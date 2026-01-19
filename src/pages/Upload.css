@@ -1,0 +1,187 @@
+/* Upload page styles - responsive for mobile and desktop */
+.upload-page {
+  /* use 100% width (avoid 100vw which can cause horizontal scrolling) */
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #0b1720;
+  box-sizing: border-box;
+  overflow-x: hidden; /* ensure no horizontal scroll */
+  background: #ffffff; /* ensure white background */
+  padding: 0; /* remove page-level side padding that can create gaps */
+}
+
+.upload-header {
+  text-align: center;
+  padding: 18px 12px;
+  font-weight: 700;
+  color: #0b1720;
+}
+
+.upload-main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box; /* prevent children overflow */
+  max-width: 100%;
+}
+
+.upload-title {
+  text-align: center;
+  font-weight: 800;
+  color: #0b1720;
+  margin: 18px 0 28px;
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+.dropzone {
+  /* Mobile default: full width with small side gutters */
+  width: 92%;
+  max-width: none;
+  background: #fff;
+  border-radius: 12px;
+  border: 3px dashed #d8dbe0;
+  padding: 36px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 0 4px transparent;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.dropzone.active {
+  box-shadow: 0 0 0 4px rgba(21, 115, 230, 0.08);
+}
+
+.dropzone-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.doc-icon {
+  opacity: 0.9;
+}
+
+.upload-text {
+  font-size: 16px;
+  margin: 6px 0 0;
+}
+
+.upload-link {
+  background: none;
+  border: none;
+  color: #1573e6;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.muted,
+.small-muted {
+  color: #9aa3ad;
+}
+
+.small-muted {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.primary-btn {
+  margin-top: 12px;
+  background: #0f76d6;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 420px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-name {
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.upload-footer {
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-btn {
+  width: calc(100% - 24px);
+  max-width: 760px;
+  padding: 14px;
+  background: #9fc0ef;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Desktop adjustments */
+@media (min-width: 900px) {
+  .upload-title {
+    font-size: 64px;
+  }
+
+  /* Keep the main container centered but allow the dropzone to grow without forcing page overflow */
+  .upload-main {
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+  }
+
+  /* make the dropzone fluid but constrained to viewport with comfortable side gutters */
+  .dropzone {
+    /* use calc/min to ensure it never exceeds viewport and never causes horizontal scroll */
+    width: min(1200px, calc(100% - 160px));
+    max-width: 100%;
+    padding: 72px 60px;
+    border-radius: 14px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .primary-btn {
+    width: clamp(420px, 40vw, 720px);
+  }
+
+  .start-btn {
+    width: min(1200px, calc(100% - 160px));
+    border-radius: 12px;
+    padding: 18px;
+    margin: 28px auto 48px;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .upload-header {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 30;
+    background: transparent;
+  }
+}
