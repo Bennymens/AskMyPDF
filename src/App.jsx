@@ -4,6 +4,7 @@ import Upload from "./pages/Upload";
 import Ask from "./pages/Ask";
 import Results from "./pages/Results";
 import Processing from "./pages/Processing";
+import ChatPreview from "./pages/ChatPreview";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/ask" element={<Ask />} />
         <Route path="/results" element={<Results />} />
         <Route path="/processing" element={<Processing />} />
+        <Route path="/chat" element={<ChatPreview />} />
       </Routes>
     </>
   );
