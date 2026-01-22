@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./ChatPreview.css";
-import { sampleChats } from "../data/dummyData";
+import { sampleChats, documents } from "../data/dummyData";
 
 const ChatPreview = () => {
   const [messages, setMessages] = useState(sampleChats);
@@ -30,7 +30,7 @@ const ChatPreview = () => {
     <div className="chat-container">
       <header className="chat-header">
         <button className="back-button">←</button>
-        <h1 className="document-title">Annual_Report_2023.pdf</h1>
+        <h1 className="document-title">{documents[0]?.name || "Document"}</h1>
         <button className="menu-button">⋮</button>
       </header>
 

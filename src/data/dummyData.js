@@ -1,23 +1,4 @@
-export const documents = [
-  {
-    id: "annual-2023",
-    name: "Annual_Report_2023.pdf",
-    size: "2.1 MB",
-    uploaded: "2025-12-01",
-  },
-  {
-    id: "climate-brief",
-    name: "Climate_Brief.pdf",
-    size: "1.4 MB",
-    uploaded: "2025-11-15",
-  },
-  {
-    id: "market-analysis",
-    name: "Market_Analysis_Q4.pdf",
-    size: "3.8 MB",
-    uploaded: "2025-10-02",
-  },
-];
+export const documents = [];
 
 export const results = [
   {

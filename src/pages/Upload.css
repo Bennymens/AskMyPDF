@@ -41,7 +41,7 @@
 
 .dropzone {
   /* Mobile default: full width with small side gutters */
-  width: 92%;
+  width: 98%;
   max-width: none;
   background: #fff;
   border-radius: 12px;
@@ -72,6 +72,7 @@
 .upload-text {
   font-size: 16px;
   margin: 6px 0 0;
+  white-space: nowrap;
 }
 
 .upload-link {
@@ -154,7 +155,7 @@
   /* make the dropzone fluid but constrained to viewport with comfortable side gutters */
   .dropzone {
     /* use calc/min to ensure it never exceeds viewport and never causes horizontal scroll */
-    width: min(1200px, calc(100% - 160px));
+    width: min(1400px, calc(100% - 100px));
     max-width: 100%;
     padding: 72px 60px;
     border-radius: 14px;
