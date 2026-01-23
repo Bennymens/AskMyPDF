@@ -41,17 +41,6 @@ const Upload = () => {
       <main className="upload-main">
         <h1 className="upload-title">Upload your PDF. Ask anything.</h1>
 
-        <section style={{ marginBottom: 20 }}>
-          <h3>Example documents</h3>
-          <ul>
-            {documents.map((d) => (
-              <li key={d.id} style={{ margin: "6px 0" }}>
-                {d.name} — {d.size}
-              </li>
-            ))}
-          </ul>
-        </section>
-
         <section
           className={`dropzone ${dragActive ? "active" : ""}`}
           onDragOver={onDragOver}

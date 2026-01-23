@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -27,7 +27,7 @@ body {
   display: block;
   min-width: 320px;
   min-height: 100vh;
-  background: #ffffff; /* ensure page background is white, no dark bands when scrolling */
+  background: #e8eced; /* ensure page background is white, no dark bands when scrolling */
   overflow-x: hidden; /* prevent horizontal scrolling */
 }
 
@@ -58,7 +58,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #e8eced;
   }
   a:hover {
     color: #747bff;
