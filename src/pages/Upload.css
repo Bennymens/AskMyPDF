@@ -73,7 +73,7 @@
 }
 
 .upload-text {
-  font-size: 14px;
+  font-size: 18px;
   margin: 6px 0 0;
   white-space: nowrap;
   font-weight: 400;
@@ -86,18 +86,24 @@
   font-weight: 400;
   cursor: pointer;
   padding: 0;
+  font-size: 15px;
+  letter-spacing: 0.2px;
 }
 
 .muted {
-  color: #333a40;
+  color: #4b5563;
   font-weight: 400;
+  font-size: 15px;
+  opacity: 0.92;
+  margin-left: 2px;
 }
 
 .small-muted {
   font-size: 11px;
   margin-bottom: 0;
   margin-top: -2px;
-  opacity: 0.6;
+  color: #0b1720;
+  opacity: 0.32;
 }
 
 .primary-btn {
@@ -145,6 +151,17 @@
 
 /* Desktop adjustments */
 @media (min-width: 900px) {
+  .muted {
+    font-weight: 600;
+    font-size: 19px;
+  }
+  .upload-link {
+    font-size: 19px;
+  }
+  .upload-link {
+    font-weight: 700 !important;
+    font-size: 19px;
+  }
   .upload-title {
     font-size: 64px;
   }
@@ -160,23 +177,27 @@
   }
 
   /* make the dropzone fluid but constrained to viewport with comfortable side gutters */
+
   .dropzone {
-    /* use calc/min to ensure it never exceeds viewport and never causes horizontal scroll */
-    width: 100%;
-    max-width: none;
-    padding: 72px 60px;
+    /* Even wider for desktop, still centered, reduced height */
+    width: 700px;
+    max-width: 99vw;
+    padding: 40px 56px;
     border-radius: 14px;
-    margin: 0;
+    margin: 0 auto;
     box-sizing: border-box;
   }
 
   .primary-btn {
-    width: clamp(450px, 35vw, 700px);
-    margin: 12px 0 0;
+    width: 340px;
+    margin: 18px auto 0;
+    display: block;
+    font-size: 18px;
   }
 
   .start-btn {
-    width: 100%;
+    width: 700px;
+    max-width: 99vw;
     border-radius: 12px;
     padding: 18px;
     margin: 28px auto 48px;
