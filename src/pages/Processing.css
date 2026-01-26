@@ -3,7 +3,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
+  background: #fff;
+  width: 100%;
   color: #0b1720;
 }
 
@@ -43,6 +44,8 @@
   font-weight: 800;
   text-align: center;
   margin: 8px 0 8px;
+  font-family: "Poppins", sans-serif;
+  white-space: pre;
 }
 
 .processing-sub {
@@ -57,18 +60,20 @@
   flex-direction: column;
   gap: 14px;
   margin-top: 18px;
+  margin-left: 20px;
+  align-self: flex-start;
 }
 .process-step {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   color: #4d5b66;
 }
 .process-step .step-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
+  width: 24px;
 }
 .process-step .step-text {
   font-size: 16px;
@@ -78,15 +83,19 @@
 .bottom-nav {
   display: flex;
   gap: 8px;
-  padding: 12px;
+  padding: 8px 12px;
   border-top: 1px solid rgba(11, 23, 32, 0.04);
   background: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 .nav-btn {
   flex: 1;
   background: transparent;
   border: none;
-  padding: 14px 6px;
+  padding: 4px 6px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -117,8 +126,12 @@
     border-width: 10px;
   }
   .bottom-nav {
-    max-width: 1120px;
-    margin: 18px auto;
     border-radius: 10px;
+  }
+  .steps {
+    align-self: center;
+  }
+  .processing-title {
+    white-space: normal;
   }
 }

@@ -12,7 +12,7 @@ const Upload = () => {
   const onButtonClick = () => inputRef.current && inputRef.current.click();
 
   const handleFiles = (files) => {
-    if (!files || !files[0]) return;
+    if (!files || !files[0] || fileName) return; // only allow one upload
     const f = files[0];
     setFileName(f.name);
     // navigate to processing page and pass file name in state

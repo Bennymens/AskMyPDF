@@ -8,8 +8,8 @@ const Step = ({ status, text }) => {
       <span className="step-icon">
         {status === "done" ? (
           <svg
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +25,8 @@ const Step = ({ status, text }) => {
           </svg>
         ) : status === "active" ? (
           <svg
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -45,13 +45,13 @@ const Step = ({ status, text }) => {
               r="4"
               stroke="#b6d7fb"
               strokeWidth="2"
-              fill="#fff"
+              fill="#1573e6"
             />
           </svg>
         ) : (
           <svg
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -77,61 +77,61 @@ const Processing = () => {
 
   const location = useLocation();
 
-  useEffect(() => {
-    const fileName = location.state?.name;
-    if (!fileName) {
-      // if no filename was passed, send user back to upload
-      const t = setTimeout(() => navigate("/upload"), 700);
-      return () => clearTimeout(t);
-    }
+  // useEffect(() => {
+  //   const fileName = location.state?.name;
+  //   if (!fileName) {
+  //     // if no filename was passed, send user back to upload
+  //     const t = setTimeout(() => navigate("/upload"), 700);
+  //     return () => clearTimeout(t);
+  //   }
 
-    let stopped = false;
+  //   let stopped = false;
 
-    const startProcessing = async () => {
-      // Try to kick off processing on the backend (if available)
-      try {
-        await fetch("/api/process", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: fileName }),
-        });
-      } catch (e) {
-        // ignore network errors — we'll fallback to polling/timeout
-      }
+  //   const startProcessing = async () => {
+  //     // Try to kick off processing on the backend (if available)
+  //     try {
+  //       await fetch("/api/process", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ name: fileName }),
+  //       });
+  //     } catch (e) {
+  //       // ignore network errors — we'll fallback to polling/timeout
+  //     }
 
-      // Poll for status (if backend supports it). If not available, fallback below.
-      const poll = async () => {
-        try {
-          const r = await fetch(
-            `/api/process/status?name=${encodeURIComponent(fileName)}`,
-          );
-          if (r.ok) {
-            const data = await r.json();
-            if (data.status === "done") {
-              navigate("/chat", { state: { name: fileName } });
-              return;
-            }
-          }
-        } catch (e) {
-          // no-op
-        }
-        if (!stopped) setTimeout(poll, 1500);
-      };
+  //     // Poll for status (if backend supports it). If not available, fallback below.
+  //     const poll = async () => {
+  //       try {
+  //         const r = await fetch(
+  //           `/api/process/status?name=${encodeURIComponent(fileName)}`,
+  //       );
+  //       if (r.ok) {
+  //         const data = await r.json();
+  //         if (data.status === "done") {
+  //           navigate("/chat", { state: { name: fileName } });
+  //           return;
+  //         }
+  //       }
+  //     } catch (e) {
+  //       // no-op
+  //     }
+  //     if (!stopped) setTimeout(poll, 1500);
+  //   };
 
-      poll();
+  //   poll();
 
-      // Final fallback: if polling doesn't exist, navigate after a reasonable delay
-      setTimeout(() => {
-        if (!stopped) navigate("/chat", { state: { name: fileName } });
-      }, 15000);
-    };
+  //   // Final fallback: if polling doesn't exist, navigate after a reasonable delay
+  //   setTimeout(() => {
+  //     if (!stopped) navigate("/chat", { state: { name: fileName } });
+  //   }, 15000);
+  //   };
 
-    startProcessing();
+  //   startProcessing();
 
-    return () => {
-      stopped = true;
-    };
-  }, [navigate, location]);
+  //   return () => {
+  //     stopped = true;
+  //   };
+  // }, [navigate, location]);
 
   return (
     <div className="processing-page">
@@ -141,11 +141,14 @@ const Processing = () => {
         <div className="spinner" aria-hidden></div>
 
         <h2 className="processing-title">
-          Teaching your document how to talk...
+          Teaching your document{"\n"}how to talk...
         </h2>
         <p className="processing-sub">
-          Please wait while we process your document. This should only take a
-          few moments.
+          Please wait while we process your
+          <br />
+          document. This should only take a few
+          <br />
+          moments.
         </p>
 
         <div className="steps">
