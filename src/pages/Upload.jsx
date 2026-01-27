@@ -51,7 +51,6 @@ const Upload = () => {
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
-          onClick={onButtonClick}
         >
           <div className="dropzone-inner">
             <svg

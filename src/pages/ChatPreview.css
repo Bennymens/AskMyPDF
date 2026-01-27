@@ -1,10 +1,11 @@
 /* ChatPreview.css */
 
 .chat-preview-container {
-  width: 100%;
-  max-width: 480px; /* maintain mobile proportions but fluid */
-  margin: 0 auto;
+  width: 100vw;
   height: 100vh;
+  min-height: 100vh;
+  max-width: 100vw;
+  margin: 0;
   display: flex;
   flex-direction: column;
   font-family:
@@ -17,8 +18,9 @@
     Arial,
     sans-serif;
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  border: none;
   box-sizing: border-box;
+  padding: 0;
 }
 
 /* Header */
