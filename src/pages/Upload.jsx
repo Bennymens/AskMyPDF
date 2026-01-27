@@ -44,7 +44,11 @@ const Upload = () => {
       <header className="upload-header">Upload Document</header>
 
       <main className="upload-main">
-        <h1 className="upload-title">Upload your PDF. Ask anything.</h1>
+        <h1 className="upload-title">
+          Upload your PDF.
+          <br />
+          Ask anything.
+        </h1>
 
         <section
           className={`dropzone ${dragActive ? "active" : ""}`}
