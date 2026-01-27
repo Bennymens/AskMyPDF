@@ -1,17 +1,23 @@
 /* Upload page styles - responsive for mobile and desktop */
+html,
+body {
+  background: #e8eced !important;
+}
 .upload-page {
-  /* use 100% width (avoid 100vw which can cause horizontal scrolling) */
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   color: #0b1720;
   box-sizing: border-box;
-  overflow-x: hidden; /* ensure no horizontal scroll */
-  background: #e8eced; /* ensure white background */
-  padding: 0; /* remove page-level side padding that can create gaps */
-  max-width: 1280px;
-  margin: 0 auto;
+  overflow-x: hidden;
+  background: #e8eced;
+  padding: 0;
+  max-width: none;
+  margin: 0;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .upload-header {
@@ -169,20 +175,16 @@
     font-size: 64px;
   }
 
-  /* Keep the main container centered but allow the dropzone to grow without forcing page overflow */
   .upload-main {
     justify-content: center;
     padding-top: 40px;
     padding-bottom: 60px;
     padding-left: 0;
     padding-right: 0;
-    max-width: 100%;
+    max-width: 100vw;
   }
 
-  /* make the dropzone fluid but constrained to viewport with comfortable side gutters */
-
   .dropzone {
-    /* Even wider for desktop, still centered, reduced height */
     width: 700px;
     max-width: 99vw;
     padding: 40px 56px;

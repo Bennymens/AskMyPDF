@@ -1,108 +1,148 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./ChatPreview.css";
-import { sampleChats, documents } from "../data/dummyData";
 
 const ChatPreview = () => {
-  const [messages, setMessages] = useState(sampleChats);
-  const [input, setInput] = useState("");
-  const endRef = useRef(null);
-
-  useEffect(() => {
-    if (endRef.current) endRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  const handleSend = () => {
-    const trimmed = input.trim();
-    if (!trimmed) return;
-    const newMsg = { id: Date.now(), role: "user", text: trimmed };
-    setMessages((m) => [...m, newMsg]);
-    setInput("");
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      role: "assistant",
+      text: "Hello! I'm your document assistant.",
+    },
+    {
+      id: 2,
+      role: "assistant-quote",
+      text: "“This is a quoted excerpt from your document.”",
+    },
+    {
+      id: 3,
+      role: "user",
+      text: "How do I teach my document to talk?",
+    },
+    {
+      id: 4,
+      role: "assistant",
+      text: "You can start by feeding it text and using our AI model to generate responses.",
+    },
+  ]);
 
   return (
-    <div className="chat-container">
-      <header className="chat-header">
-        <button className="back-button">←</button>
-        <h1 className="document-title">{documents[0]?.name || "Document"}</h1>
-        <button className="menu-button">⋮</button>
-      </header>
+    <div className="chat-preview-container">
+      {/* Header */}
+      <div className="chat-header">
+        <svg
+          className="icon back-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="22" y1="14" x2="6" y2="14" />
+          <polyline points="12 8 6 14 12 20" />
+        </svg>
+        <span className="chat-filename">Annual_Report_2023.pdf</span>
+        <svg
+          className="icon menu-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="1" />
+          <circle cx="19" cy="12" r="1" />
+          <circle cx="5" cy="12" r="1" />
+        </svg>
+      </div>
 
-      <main className="chat-content">
-        {messages.map((m) => (
-          <div
-            key={m.id}
-            className={`message-group ${m.role === "ai" ? "ai-message" : "user-message"}`}
-          >
-            {m.role === "ai" && (
-              <>
-                <div className="message-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#2196F3" />
-                    <path
-                      d="M2 17L12 22L22 17"
-                      stroke="#2196F3"
-                      strokeWidth="2"
-                    />
-                    <path
-                      d="M2 12L12 17L22 12"
-                      stroke="#2196F3"
-                      strokeWidth="2"
-                    />
+      {/* Chat messages */}
+      <div className="chat-messages">
+        {messages.map((msg) => {
+          if (msg.role === "assistant") {
+            return (
+              <div key={msg.id} className="message assistant-message">
+                <span className="robot-avatar">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="36"
+                    height="36"
+                    viewBox="0 0 36 36"
+                    fill="none"
+                  >
+                    <circle cx="18" cy="18" r="18" fill="#eaf2fb" />
+                    <g>
+                      <rect
+                        x="11"
+                        y="16"
+                        width="14"
+                        height="8"
+                        rx="3"
+                        fill="#1573e6"
+                      />
+                      <circle cx="15.5" cy="20" r="1.5" fill="#fff" />
+                      <circle cx="20.5" cy="20" r="1.5" fill="#fff" />
+                      <rect
+                        x="15"
+                        y="12"
+                        width="6"
+                        height="3"
+                        rx="1.5"
+                        fill="#1573e6"
+                      />
+                    </g>
                   </svg>
-                </div>
-                <div className="message-bubble ai-bubble">
-                  <p className="message-text">{m.text}</p>
-                  {m.quote && (
-                    <div className="quote-box">
-                      <p className="quote-text">{m.quote}</p>
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
+                </span>
+                <div className="message-text">{msg.text}</div>
+              </div>
+            );
+          } else if (msg.role === "assistant-quote") {
+            return (
+              <div key={msg.id} className="message assistant-quote-message">
+                <div className="quote-text">{msg.text}</div>
+              </div>
+            );
+          } else {
+            return (
+              <div key={msg.id} className="message user-message">
+                {msg.text}
+              </div>
+            );
+          }
+        })}
+      </div>
 
-            {m.role === "user" && (
-              <>
-                <div className="message-bubble user-bubble">
-                  <p className="message-text">{m.text}</p>
-                </div>
-                <div className="user-avatar">
-                  <div className="avatar-circle"></div>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
-        <div ref={endRef} />
-      </main>
-
-      <footer className="chat-footer">
-        <div className="input-container">
-          <input
-            type="text"
-            className="chat-input"
-            placeholder="Ask a question..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button
-            type="button"
-            className="send-button"
-            aria-label="Send message"
-            onClick={handleSend}
+      {/* Input bar */}
+      <div className="chat-input-bar">
+        <input
+          type="text"
+          placeholder="Ask a question...."
+          className="chat-input"
+        />
+        <button className="send-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            viewBox="0 0 28 28"
           >
-            <img src="/send.png" alt="Send" className="send-icon" />
-          </button>
-        </div>
-      </footer>
+            <polygon points="5 4 25 14 5 24 9 14 5 4" />
+            <line x1="5" y1="14" x2="25" y2="14" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };

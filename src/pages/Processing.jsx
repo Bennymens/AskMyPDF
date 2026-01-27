@@ -77,61 +77,12 @@ const Processing = () => {
 
   const location = useLocation();
 
-  // useEffect(() => {
-  //   const fileName = location.state?.name;
-  //   if (!fileName) {
-  //     // if no filename was passed, send user back to upload
-  //     const t = setTimeout(() => navigate("/upload"), 700);
-  //     return () => clearTimeout(t);
-  //   }
-
-  //   let stopped = false;
-
-  //   const startProcessing = async () => {
-  //     // Try to kick off processing on the backend (if available)
-  //     try {
-  //       await fetch("/api/process", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify({ name: fileName }),
-  //       });
-  //     } catch (e) {
-  //       // ignore network errors — we'll fallback to polling/timeout
-  //     }
-
-  //     // Poll for status (if backend supports it). If not available, fallback below.
-  //     const poll = async () => {
-  //       try {
-  //         const r = await fetch(
-  //           `/api/process/status?name=${encodeURIComponent(fileName)}`,
-  //       );
-  //       if (r.ok) {
-  //         const data = await r.json();
-  //         if (data.status === "done") {
-  //           navigate("/chat", { state: { name: fileName } });
-  //           return;
-  //         }
-  //       }
-  //     } catch (e) {
-  //       // no-op
-  //     }
-  //     if (!stopped) setTimeout(poll, 1500);
-  //   };
-
-  //   poll();
-
-  //   // Final fallback: if polling doesn't exist, navigate after a reasonable delay
-  //   setTimeout(() => {
-  //     if (!stopped) navigate("/chat", { state: { name: fileName } });
-  //   }, 15000);
-  //   };
-
-  //   startProcessing();
-
-  //   return () => {
-  //     stopped = true;
-  //   };
-  // }, [navigate, location]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/chat"); // route to ChatPreview.jsx
+    }, 10000); // Navigate to chat after 10 seconds
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
     <div className="processing-page">
