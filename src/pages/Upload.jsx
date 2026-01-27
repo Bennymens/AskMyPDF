@@ -45,9 +45,16 @@ const Upload = () => {
 
       <main className="upload-main">
         <h1 className="upload-title">
-          Upload your PDF.
-          <br />
-          Ask anything.
+          <span className="mobile-title">
+            Upload your PDF.
+            <br />
+            Ask anything.
+          </span>
+          <span className="desktop-title">
+            Upload your PDF. Ask
+            <br />
+            anything.
+          </span>
         </h1>
 
         <section
