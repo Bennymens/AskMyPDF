@@ -113,9 +113,10 @@ const Upload = () => {
             <input
               ref={inputRef}
               type="file"
-              accept="application/pdf"
+              accept="application/pdf,application/acrobat,application/x-pdf,application/vnd.pdf,application/vnd.adobe.pdf,.pdf"
               className="file-input"
               onChange={onChange}
+              capture=""
             />
           </div>
         </section>
