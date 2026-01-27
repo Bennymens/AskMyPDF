@@ -12,11 +12,16 @@ const Upload = () => {
   const onButtonClick = () => inputRef.current && inputRef.current.click();
 
   const handleFiles = (files) => {
-    if (!files || !files[0] || fileName) return; // only allow one upload
+    if (!files || !files[0]) return;
     const f = files[0];
     setFileName(f.name);
     // navigate to processing page and pass file name in state
     navigate("/processing", { state: { name: f.name } });
+    // Clear file input and fileName after navigation for mobile compatibility
+    setTimeout(() => {
+      setFileName("");
+      if (inputRef.current) inputRef.current.value = "";
+    }, 500);
   };
 
   const onChange = (e) => handleFiles(e.target.files);
@@ -122,7 +127,7 @@ const Upload = () => {
       </main>
 
       <footer className="upload-footer">
-        <button className="start-btn" onClick={() => navigate("/ask")}>
+        <button className="start-btn" onClick={() => navigate("/chat")}>
           Start Chatting
         </button>
       </footer>
