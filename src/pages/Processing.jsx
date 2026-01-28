@@ -79,8 +79,8 @@ const Processing = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/chat"); // route to ChatPreview.jsx
-    }, 10000); // Navigate to chat after 10 seconds
+      navigate("/summary"); // route to Summary.jsx after processing
+    }, 4000); // Simulate processing, then go to summary
     return () => clearTimeout(timer);
   }, [navigate]);
 

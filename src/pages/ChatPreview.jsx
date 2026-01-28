@@ -25,6 +25,32 @@ const ChatPreview = () => {
     },
   ]);
 
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSend = () => {
+    const trimmed = inputValue.trim();
+    if (!trimmed) return;
+    setMessages([
+      ...messages,
+      {
+        id: Date.now(),
+        role: "user",
+        text: trimmed,
+      },
+    ]);
+    setInputValue("");
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSend();
+    }
+  };
+
   return (
     <div className="chat-preview-container">
       {/* Header */}
@@ -110,9 +136,38 @@ const ChatPreview = () => {
               </div>
             );
           } else {
+            // Special handling for the specific user message
+            const isOneLine =
+              msg.text === "How do I teach my document to talk?";
             return (
               <div key={msg.id} className="message user-message">
-                {msg.text}
+                <div
+                  className={`message-text${isOneLine ? " one-line-desktop" : ""}`}
+                >
+                  {msg.text}
+                </div>
+                <span className="user-avatar">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="36"
+                    height="36"
+                    viewBox="0 0 36 36"
+                    fill="none"
+                  >
+                    <circle cx="18" cy="18" r="18" fill="#e6f0fa" />
+                    <g>
+                      <circle cx="18" cy="15" r="6" fill="#1573e6" />
+                      <rect
+                        x="10"
+                        y="24"
+                        width="16"
+                        height="6"
+                        rx="3"
+                        fill="#1573e6"
+                      />
+                    </g>
+                  </svg>
+                </span>
               </div>
             );
           }
@@ -125,8 +180,11 @@ const ChatPreview = () => {
           type="text"
           placeholder="Ask a question...."
           className="chat-input"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
         />
-        <button className="send-button">
+        <button className="send-button" onClick={handleSend}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="28"
