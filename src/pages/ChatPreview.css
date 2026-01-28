@@ -470,15 +470,17 @@
     margin-bottom: 0;
   }
   .chat-input-bar {
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 16px;
     padding: 10px 8px 24px 8px;
     background: #fff;
     display: flex;
     align-items: center;
     z-index: 100;
     margin-bottom: 0;
+    box-shadow: 0 0 0 100vmax #fff;
+    clip-path: inset(0 -100vmax -100vmax -100vmax);
   }
 }
