@@ -449,21 +449,36 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .chat-header {
+    margin-top: 0;
+    padding-top: env(safe-area-inset-top, 0);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
   .chat-messages {
     flex: 1;
     overflow-y: auto;
     padding-bottom: 0;
+    margin-bottom: 0;
   }
   .chat-input-bar {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -24px;
-    padding: 10px 8px 38px 8px;
+    bottom: 0;
+    padding: 10px 8px 24px 8px;
     background: #fff;
     display: flex;
     align-items: center;
     z-index: 100;
+    margin-bottom: 0;
   }
 }
